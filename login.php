@@ -1,3 +1,41 @@
+<?php
+$wrong_pass = false;
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+  include 'partials/_dbconnect.php';
+
+  //Function to check any special char
+  function test_input($data){
+    $data = trim($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+  //Collecting Post variables
+  $username = test_input($_POST['username']);
+  $password = test_input($_POST['password']);
+
+  //SQL Query
+  $sql = "SELECT `username`, `password` FROM `users` ";
+
+  $result = $con->query($sql);
+
+  $data = mysqli_fetch_array($result);
+
+  //Check if username and password match from database or not
+  if($username == $data['username'] && $password == $data['password']){
+    session_start();
+    $_SESSION['username'] = $username;
+    echo "Session Started and you are logged in";
+    header("location: home.php");
+  } else {
+    $wrong_pass = true;
+  }
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +52,7 @@
     <?php require 'partials/_nav.php'?>
     <h1 class="text-center my-4">Login</h1>
     <div class="container">
-    <form action="signup.php" method="post">
+    <form action="login.php" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
@@ -23,7 +61,13 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
-        
+        <?php 
+                if($wrong_pass == true){
+                    echo "<div class='alert alert-danger' role='alert'>
+                            Password Mismatch! Pleae enter correct password.
+                         </div>";
+                }
+            ?>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

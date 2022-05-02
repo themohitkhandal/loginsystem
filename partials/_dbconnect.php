@@ -13,9 +13,4 @@
     if(!$con) {
         echo "Some error occured! $error";
     }
-    
-
-    
-    
-
 ?>
