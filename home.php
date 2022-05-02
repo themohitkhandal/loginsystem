@@ -16,7 +16,13 @@
 <body>
   <?php require 'partials/_nav.php'?>
   <h1 class="text-center">Home</h1>
-  
+  <?php
+    if(isset($_SESSION['username'])){
+      echo "<h1>Hello " . $_SESSION['username'] . " You have logged in </h1>";
+    } else {
+      echo "You need to log in!";
+    }
+  ?>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
