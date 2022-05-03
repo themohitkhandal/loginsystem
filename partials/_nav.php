@@ -1,7 +1,6 @@
 <?php
-$loggedin = false;
+
 if(isset($_SESSION['username'])){
-  echo "logged in ";
   $loggedin = true;
 } else {
   $loggedin = false;
