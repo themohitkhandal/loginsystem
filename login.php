@@ -22,16 +22,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
   $result = $con->query($sql);
 
   $data = mysqli_fetch_array($result);
-
+  $rows = mysqli_num_rows($result);
   //Check if username and password match from database or not
-  if($username == $data['username'] && $password == $data['password']){
-    session_start();
-    $_SESSION['username'] = $username;
-    echo "Session Started and you are logged in";
-    header("location: home.php");
-  } else {
-    $wrong_pass = true;
+  if($rows > 0){
+    if($username == $data['username'] && $password == $data['password']){
+      session_start();
+      $_SESSION['username'] = $username;
+      header("location: home.php");
+    } else {
+      $wrong_pass = true;
+    }
   }
+  
 }
 ?>
 

@@ -17,11 +17,14 @@
   <?php require 'partials/_nav.php'?>
   <h1 class="text-center">Home</h1>
   <?php
-    if(isset($_SESSION['username'])){
-      echo "<h1>Hello " . $_SESSION['username'] . " You have logged in </h1>";
+    session_start();
+    if($_SESSION['username']){
+      echo "Welcome user " . $_SESSION['username'];
     } else {
       echo "You need to log in!";
+      header("location:login.php");
     }
+    
   ?>
   <!-- Optional JavaScript; choose one of the two! -->
 
