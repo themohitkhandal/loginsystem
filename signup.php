@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         if($result){
             $insert = true;
         }else {
-            echo "$con->error;";
+            echo "Something went wrong!" . mysqli_error($con);
         }
     }else{
         $mismatch = true;
@@ -47,7 +47,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <title>iSecure</title>
   </head>
   <body>
@@ -90,6 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -11,6 +11,6 @@
 
     //Checking Connection
     if(!$con) {
-        echo "Some error occured! $error";
+        die("Some error occured! " . mysqli_connect_error());
     }
 ?>
