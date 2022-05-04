@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         if($result){
             $insert = true;
         }else {
-            echo "$con->error;";
+            echo "Something went wrong!" . mysqli_error($con);
         }
     }else{
         $mismatch = true;
