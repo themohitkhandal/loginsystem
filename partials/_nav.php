@@ -1,9 +1,8 @@
 <?php
-
-if(isset($_SESSION['username'])){
-  $loggedin = true;
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+  $login = true;
 } else {
-  $loggedin = false;
+  $login = false;
 }
 echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -13,7 +12,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">';
-      if($loggedin == true){
+      if($login){
         echo '<li class="nav-item">
         <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
@@ -21,7 +20,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="nav-link" href="logout.php">Logout</a>
         </li>';
       }
-      if($loggedin == false){
+      if(!$login){
         echo '<li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>
