@@ -19,7 +19,8 @@
   <?php
     session_start();
     if($_SESSION['username']){
-      echo "Welcome user " . $_SESSION['username'];
+      echo '<div class="alert alert-success" role="alert">
+              Hello ' . $_SESSION['username'] . '. Session is started. <a href="/loginsystem/logout.php">Click here to logout!<a></div>' ;
     } else {
       echo "You need to log in!";
       header("location:login.php");
